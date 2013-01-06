@@ -1,21 +1,16 @@
+/**
+ * Represents an action that creates a new Penthouse Apartment
+ */
 package controller.actions;
 
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
 import model.db.errors.ObjectCreationException;
-import model.street.Building;
 import model.street.Penthouse;
 import view.menu.Action;
 import view.menu.TextualOption;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Elia
- * Date: 12/29/12
- * Time: 6:45 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CreatePenthouseAptAction implements Action {
 	/**
 	 * Do a general Action
@@ -26,7 +21,6 @@ public class CreatePenthouseAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		Building building = controller.getDatabaseInstance().getBuilding(currentAddress);
 		TextualOption oApartmentFloor = new TextualOption("Set apartment's floor: ", new GetIntegerInputAction());
 		oApartmentFloor.displayOption();
 		oApartmentFloor.getAction().doAction();

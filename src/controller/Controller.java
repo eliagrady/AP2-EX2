@@ -5,7 +5,6 @@
 package controller;
 
 import controller.actions.*;
-import controller.errors.InvalidInputException;
 import model.db.Database;
 import model.db.MyPrototypeFactory;
 import model.street.Building;
@@ -91,19 +90,19 @@ public class Controller {
 	 * The main sequence for this program.
 	 * First, creates a ground, then robots, and finally shapes.
 	 * afterwards, a simulation can be run.
-	 *
-	 * @throws InvalidInputException iff an invalid input was not handled
 	 */
 	protected void mainSequence() {
 		InputHandler inputHandler = InputHandler.getInstance();
 		objectsFactory = generateFactory();
 		// Creating the menus
 		//createGround menu;
+		/*
 		ArrayList<Option> oCreateBuilding = new ArrayList<Option>(3);
 		oCreateBuilding.add(new TextualOption(TextualMenuContent.CREATE_BUILDING_OPTION, new CreateBuildingAction()));
 		oCreateBuilding.add(new TextualOption(TextualMenuContent.MAIN_MENU_OPTION, new ReturnToMainMenuAction()));
 		oCreateBuilding.add(new TextualOption(TextualMenuContent.QUIT, new QuitAction()));
 		TextualMenu createBuilding = new TextualMenu(TextualMenuContent.CREATE_BUILDING_TITLE, oCreateBuilding);
+		*/
 
 		//queryApartments menu
 		ArrayList<Option> oQueryApartments = new ArrayList<Option>(11);
@@ -120,18 +119,18 @@ public class Controller {
 		oQueryApartments.add(new TextualOption(TextualMenuContent.MAIN_MENU_OPTION, new ReturnToMainMenuAction()));
 		oQueryApartments.add(new TextualOption(TextualMenuContent.QUIT, new QuitAction()));
 		TextualMenu queryApartments = new TextualMenu(TextualMenuContent.APARTMENTS_QUERY_TITLE, oQueryApartments);
-
-		//Sell menu
+		/*
+		//Sell menu, to choose filtering parameters
 		ArrayList<Option> oSellApartments = new ArrayList<Option>(3);
 		oSellApartments.add(new TextualOption(TextualMenuContent.APARTMENT_SELL_OPTION, new SellAptAction()));
 		oSellApartments.add(new TextualOption(TextualMenuContent.QUIT, new QuitAction()));
 		TextualMenu sellApartment = new TextualMenu(TextualMenuContent.APARTMENT_SELL_TITLE, oSellApartments);
-
+		*/
 		//Main menu
 		ArrayList<Option> oMainMenu = new ArrayList<Option>(4);
 		oMainMenu.add(new TextualOption(TextualMenuContent.CREATE_BUILDING_OPTION, new CreateBuildingAction()));
 		oMainMenu.add(new TextualOption(TextualMenuContent.APARTMENTS_QUERY_OPTION, new OpenQueryApartmentsMenu()));
-		oMainMenu.add(new TextualOption(TextualMenuContent.APARTMENT_SELL_OPTION, new ReturnToMainMenuAction()));
+		oMainMenu.add(new TextualOption(TextualMenuContent.APARTMENT_SELL_OPTION, new SellAptAction()));
 		oMainMenu.add(new TextualOption(TextualMenuContent.CLEAR_DATABASE_OPTION, new ClearDatabaseAction()));
 		oMainMenu.add(new TextualOption(TextualMenuContent.QUIT, new QuitAction()));
 		TextualMenu mainMenu = new TextualMenu(TextualMenuContent.MAIN_MENU_TITLE, oMainMenu);
@@ -153,10 +152,6 @@ public class Controller {
 					validInput = true;
 					if (menuCodeRequest.contentEquals(TextualMenuContent.APARTMENTS_QUERY_OPTION)) {
 						currentMenu = queryApartments;
-					} else if (menuCodeRequest.contentEquals(TextualMenuContent.CREATE_BUILDING_OPTION)) {
-						currentMenu = sellApartment;
-					} else if (menuCodeRequest.contentEquals(TextualMenuContent.APARTMENT_SELL_OPTION)) {
-						currentMenu = sellApartment;
 					} else if (menuCodeRequest.contentEquals(TextualMenuContent.RETURN_TO_MAIN_MENU)) {
 						currentMenu = mainMenu;
 					}

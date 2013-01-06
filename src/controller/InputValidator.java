@@ -3,7 +3,9 @@
  */
 package controller;
 
-import controller.errors.*;
+import controller.errors.InvalidApartmentAreaInputException;
+import controller.errors.InvalidApartmentAuxAreaInputException;
+import controller.errors.InvalidInputException;
 
 public class InputValidator {
 	private static final InputValidator instance = new InputValidator();
@@ -74,9 +76,11 @@ public class InputValidator {
 	 * @param input      the input to validate
 	 * @return true iff the input is between these bounds
 	 */
+	/*//TODO remove unused
 	private boolean isIntInValidRange(int upperBound, int lowerBound, int input) {
 		return lowerBound <= input && input <= upperBound;
 	}
+	*/
 
 	/**
 	 * Validates a given capacity input for a robot
@@ -84,71 +88,6 @@ public class InputValidator {
 	 * @param capacity capacity to validate
 	 * @return a valid capacity
 	 */
-	public float validateRobotCapacity(float capacity) {
-		boolean validInput = false;
-		do {
-			try {
-				if (capacity >= 0) {
-					validInput = true;
-				} else throw new InvalidCoordinateInputException();
-			} catch (InvalidCoordinateInputException e) {
-				InputHandler inputHandler = InputHandler.getInstance();
-				System.out.println(e.getMessage());
-				System.out.println("Please enter a valid non-negative Float");
-				inputHandler.captureFloat();
-				capacity = inputHandler.getCapturedFloat();
-			}
-		} while (!validInput);
-		return capacity;
-	}
-
-	/**
-	 * Validate the number of sides a polygon gets as input
-	 *
-	 * @param numOfSides the number of sides to validate
-	 * @return a valid number of sides to set
-	 */
-	public int validatePolygonSides(int numOfSides) {
-		boolean validInput = false;
-		do {
-			try {
-				if (numOfSides > 2) {
-					validInput = true;
-				} else throw new InvalidPolygonSidesException();
-			} catch (InvalidPolygonSidesException e) {
-				InputHandler inputHandler = InputHandler.getInstance();
-				System.out.println(e.getMessage());
-				System.out.println("Please enter a valid, above 2 Integer");
-				inputHandler.captureInt();
-				numOfSides = inputHandler.getCapturedInt();
-			}
-		} while (!validInput);
-		return numOfSides;
-	}
-
-	/**
-	 * Validates the input for the edge of a polygon
-	 *
-	 * @param edgeLength the length input for edge of a polygon
-	 * @return a valid length for an edge of a polygon
-	 */
-	public float validateEdgeLength(float edgeLength) {
-		boolean validInput = false;
-		do {
-			try {
-				if (edgeLength > 0) {
-					validInput = true;
-				} else throw new InvalidPolygonEdgeLengthException();
-			} catch (InvalidPolygonEdgeLengthException e) {
-				InputHandler inputHandler = InputHandler.getInstance();
-				System.out.println(e.getMessage());
-				System.out.println("Please enter a valid non-negative Float");
-				inputHandler.captureFloat();
-				edgeLength = inputHandler.getCapturedFloat();
-			}
-		} while (!validInput);
-		return edgeLength;
-	}
 
 	public String getCurrentBuildingAddress() {
 		return currentBuildingAddress;

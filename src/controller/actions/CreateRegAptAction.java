@@ -1,5 +1,5 @@
 /**
- * Represents creating a Circle shape action.
+ * Represents an action that creates a new Regular Apartment
  */
 
 package controller.actions;
@@ -8,7 +8,6 @@ import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
 import model.db.errors.ObjectCreationException;
-import model.street.Building;
 import model.street.RegularApartment;
 import view.menu.Action;
 import view.menu.TextualOption;
@@ -29,7 +28,6 @@ public class CreateRegAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		Building building = controller.getDatabaseInstance().getBuilding(currentAddress);
 		TextualOption oApartmentFloor = new TextualOption("Set apartment's floor: ", new GetIntegerInputAction());
 		oApartmentFloor.displayOption();
 		oApartmentFloor.getAction().doAction();

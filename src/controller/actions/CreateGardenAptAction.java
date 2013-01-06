@@ -1,24 +1,20 @@
+/**
+ * Represents an action that creates a new Garden Apartment
+ */
 package controller.actions;
 
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
 import model.db.errors.ObjectCreationException;
-import model.street.Building;
 import model.street.GardenApartment;
 import view.menu.Action;
 import view.menu.TextualOption;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Elia
- * Date: 12/29/12
- * Time: 7:02 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CreateGardenAptAction implements Action {
 	/**
-	 * Do a general Action
+	 * Perform Action: create a new garden apartment that will be placed in the
+	 * current building address held by the InputValidator.
 	 */
 	@Override
 	public void doAction() {
@@ -26,7 +22,6 @@ public class CreateGardenAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		Building building = controller.getDatabaseInstance().getBuilding(currentAddress);
 		TextualOption oApartmentFloor = new TextualOption("Set apartment's floor: ", new GetIntegerInputAction());
 		oApartmentFloor.displayOption();
 		oApartmentFloor.getAction().doAction();
