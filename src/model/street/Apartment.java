@@ -58,8 +58,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 		return residentName;
 	}
 
-	;
-
 	/**
 	 * Set a new resident's name
 	 *
@@ -69,8 +67,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 		this.residentName = residentName;
 	}
 
-	;
-
 	/**
 	 * Return the apartment's floor number
 	 *
@@ -79,8 +75,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	public int getFloor() {
 		return this.floor;
 	}
-
-	;
 
 	/**
 	 * Set the apartment's floor number
@@ -93,8 +87,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 		}
 	}
 
-	;
-
 	/**
 	 * Returns the number of rooms in the apartment
 	 *
@@ -103,8 +95,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	public double getNumOfRooms() {
 		return numOfRooms;
 	}
-
-	;
 
 	/**
 	 * Set the number of rooms in the apartment
@@ -115,8 +105,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 		this.numOfRooms = numOfRooms;
 	}
 
-	;
-
 	/**
 	 * Returns the area of the apartment in square meters
 	 *
@@ -126,8 +114,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 		return this.area;
 	}
 
-	;
-
 	/**
 	 * Sets the area of the apartment in square meters
 	 *
@@ -136,8 +122,6 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	public void setArea(double area) {
 		this.area = area;
 	}
-
-	;
 
 	/**
 	 * Compares this Apartment with the specified Apartment object for order by area.
@@ -159,10 +143,7 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	 * @return Returns true iff the area of both apartments
 	 */
 	public boolean equals(Apartment apartment) {
-		if ((apartment != null) && (this.totalArea() == apartment.totalArea())) {
-			return true;
-		}
-		return false;
+		return (apartment != null) && (this.totalArea() == apartment.totalArea());
 	}
 
 	/**
@@ -171,10 +152,7 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	 * @return Returns true iff this apartment is empty
 	 */
 	public boolean isFree() {
-		if (this.residentName != null && this.residentName.length() != 0) {
-			return false;
-		}
-		return true;
+		return !(this.residentName != null && this.residentName.length() != 0);
 	}
 
 	/**
@@ -202,6 +180,7 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	 * @return a string representation of the description
 	 */
 	public String getDescription() {
-		return "Address: " + getAddress() + " Type: " + this.toString() + " Number of rooms: " + numOfRooms + " Total area:" + totalArea();
+		return "Address: " + getAddress() + "\n Type: " + this.toString() +
+			       "\n Number of rooms: " + numOfRooms + "\n Total area:" + totalArea() + "\n";
 	}
 }

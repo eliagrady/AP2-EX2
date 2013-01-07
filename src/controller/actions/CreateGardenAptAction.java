@@ -6,6 +6,7 @@ package controller.actions;
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
+import controller.TextualMenuContent;
 import model.db.errors.ObjectCreationException;
 import model.street.GardenApartment;
 import view.menu.Action;
@@ -22,31 +23,31 @@ public class CreateGardenAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		TextualOption oApartmentFloor = new TextualOption("Set apartment's floor: ", new GetIntegerInputAction());
+		TextualOption oApartmentFloor = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_FLOOR, new GetIntegerInputAction());
 		oApartmentFloor.displayOption();
 		oApartmentFloor.getAction().doAction();
 		int floor = inputHandler.getCapturedInt();
 		floor = inputValidator.validateFloor(floor);
 
-		TextualOption oApartmentNumberOfRooms = new TextualOption("Set apartment's number of rooms: ", new GetIntegerInputAction());
+		TextualOption oApartmentNumberOfRooms = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_NUM_OF_ROOMS, new GetIntegerInputAction());
 		oApartmentNumberOfRooms.displayOption();
 		oApartmentNumberOfRooms.getAction().doAction();
 		int numOfRooms = inputHandler.getCapturedInt();
 		numOfRooms = inputValidator.validateNumOfRooms(numOfRooms);
 
-		TextualOption oApartmentArea = new TextualOption("Set apartment's area: ", new GetFloatInputAction());
+		TextualOption oApartmentArea = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_AREA, new GetFloatInputAction());
 		oApartmentArea.displayOption();
 		oApartmentArea.getAction().doAction();
 		float area = inputHandler.getCapturedFloat();
 		area = inputValidator.validateArea(area);
 
-		TextualOption oApartmentGardenArea = new TextualOption("Set apartment's garden area: ", new GetFloatInputAction());
+		TextualOption oApartmentGardenArea = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_GARDEN_AREA, new GetFloatInputAction());
 		oApartmentGardenArea.displayOption();
 		oApartmentGardenArea.getAction().doAction();
 		float gardenArea = inputHandler.getCapturedFloat();
 		gardenArea = inputValidator.validateAuxArea(gardenArea);
 
-		TextualOption oApartmentSeparateEntrance = new TextualOption("Does it have a separate entrance? ", new GetStringInputAction());
+		TextualOption oApartmentSeparateEntrance = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_SEPARATE_ENTRANCE, new GetStringInputAction());
 		oApartmentSeparateEntrance.displayOption();
 		oApartmentSeparateEntrance.getAction().doAction();
 		String hasPrivateEntrance = inputHandler.getCapturedString();

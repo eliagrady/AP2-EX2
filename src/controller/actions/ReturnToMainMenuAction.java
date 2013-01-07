@@ -1,5 +1,5 @@
 /**
- * Represent an action for creating a robot
+ * Represent an action that cause the return to the upper, main menu
  */
 
 package controller.actions;

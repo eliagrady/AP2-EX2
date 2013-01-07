@@ -6,6 +6,7 @@ package controller.actions;
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
+import controller.TextualMenuContent;
 import model.db.Database;
 import model.street.Apartment;
 import model.street.Building;
@@ -32,7 +33,7 @@ public class QueryFreeAptAddressAction implements Action {//Option2Query9
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		Database database = Controller.getInstance().getDatabaseInstance();
-		TextualOption oStreetName = new TextualOption("What street address would you like to query?", new GetStringInputAction());
+		TextualOption oStreetName = new TextualOption(TextualMenuContent.QUERY_STREET_NAME, new GetStringInputAction());
 		oStreetName.displayOption();
 		oStreetName.getAction().doAction();
 		String streetName = inputHandler.getCapturedString();

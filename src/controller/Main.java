@@ -1,5 +1,5 @@
 /**
- * Ex 2
+ * Ex 3
  * Author: Elia Grady
  * ID: 300907060
  * Course: Advanced Programming 1
@@ -23,17 +23,7 @@ public class Main {
 			controller.getDatabaseInstance().saveState();
 			System.out.println("Oops, program crashed. Don't worry, saving changes");
 		}
+		// Close program - configuration saved to DB by the controller
 		//saving done by exiting correctly
-
-		//controller.getDatabaseInstance().saveState();
-
-		/// Mid program - run program display menu
-		// Option 1: Add new buildings
-		// Option 2: Display data about DB (queries)
-		// Option 3: Change a building's data to 'Sell it'
-		// Option 4: Save & Quit
-
-		// Close program - save configuration to DB
-
 	}
 }

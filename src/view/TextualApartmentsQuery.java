@@ -28,17 +28,10 @@ public final class TextualApartmentsQuery {
 			System.out.println(TextualMenuContent.QUERY_FREE_APT_MENU_TITLE);
 		}
 		for (Apartment apartment : results) {
-			/*
-			System.out.println(TextualMenuContent.LINE_SEPARATOR);
-			System.out.println("Full Address: "+apartment.getAddress());
-			System.out.println("Floor: "+apartment.getFloor());
-			System.out.println("Apartment type: "+apartment.toString());
-			System.out.println("Number of rooms: "+apartment.getNumOfRooms());
-			System.out.println("Total area: "+apartment.totalArea());
-			 */
+			System.out.println(TextualMenuContent.LINE_SEPARATOR + "\n");
 			System.out.println(apartment.getDescription());
+
 		}
 		System.out.println(TextualMenuContent.LINE_SEPARATOR + "\n");
-
 	}
 }

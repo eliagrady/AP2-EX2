@@ -1,5 +1,5 @@
 /**
- * Represent a rapid, unsafe execution of an 'exit' from this program.
+ * Represent a safe execution of an 'exit' from this program.
  */
 package controller.actions;
 
@@ -15,11 +15,10 @@ public class QuitAction implements Action {
 	}
 
 	/**
-	 * Quit the program after saving
+	 * Quit the program
 	 */
 	@Override
 	public void doAction() {
-		//Controller.getInstance().getDatabaseInstance().saveState();//save changes before exit
 		System.out.println(TextualMenuContent.GOODBYE);
 		Controller.getInstance().changeMenu(TextualMenuContent.QUIT);
 	}

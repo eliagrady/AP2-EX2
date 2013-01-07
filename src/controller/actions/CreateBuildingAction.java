@@ -33,12 +33,12 @@ public class CreateBuildingAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		Building building = null;
-		TextualOption oStreetName = new TextualOption("Set street name for this building:", new GetStringInputAction());
+		TextualOption oStreetName = new TextualOption(TextualMenuContent.BUILD_REQUEST_STREET_NAME, new GetStringInputAction());
 		oStreetName.displayOption();
 		oStreetName.getAction().doAction();
 		String streetName = inputHandler.getCapturedString();
 		streetName = inputValidator.validateStreetName(streetName);
-		TextualOption oStreetNumber = new TextualOption("Set street number:", new GetIntegerInputAction());
+		TextualOption oStreetNumber = new TextualOption(TextualMenuContent.BUILD_REQUEST_STREET_NUMBER, new GetIntegerInputAction());
 		oStreetNumber.displayOption();
 		oStreetNumber.getAction().doAction();
 		int streetNumber = inputHandler.getCapturedInt();
@@ -54,7 +54,9 @@ public class CreateBuildingAction implements Action {
 			System.out.println(e.getMessage());
 		}
 		//This is how newly created apartments know which building they are at.
-		InputValidator.getInstance().setCurrentBuildingAddress(building.getAddress());
+		if (building != null) {
+			InputValidator.getInstance().setCurrentBuildingAddress(building.getAddress());
+		}
 		ArrayList<Option> oApartments = new ArrayList<Option>(3);
 		TextualOption oAptTypeRegular = new TextualOption(TextualMenuContent.CREATE_REGULAR_APT_OPTION, new CreateRegAptAction());
 		TextualOption oAptTypePenthouse = new TextualOption(TextualMenuContent.CREATE_PENTHOUSE_APT_OPTION, new CreatePenthouseAptAction());
@@ -63,7 +65,7 @@ public class CreateBuildingAction implements Action {
 		oApartments.add(oAptTypePenthouse);
 		oApartments.add(oAptTypeGarden);
 		Menu mApartments = new TextualMenu(TextualMenuContent.CREATE_APARTMENTS_TITLE, oApartments);
-		TextualOption oConfirmation = new TextualOption("Build another apartment Y/N?", new GetStringInputAction());
+		TextualOption oConfirmation = new TextualOption(TextualMenuContent.BUILD_CONFIRMATION, new GetStringInputAction());
 		String message;
 		boolean validInput;
 		Boolean keepCreating = false;

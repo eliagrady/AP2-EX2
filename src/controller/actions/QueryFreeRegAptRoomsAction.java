@@ -1,11 +1,12 @@
 /**
- * Represents a perfect triangle creation action.
+ * Represents a query action about free regular apartments with a given number of rooms
  */
 package controller.actions;
 
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
+import controller.TextualMenuContent;
 import model.db.Database;
 import model.street.Apartment;
 import model.street.Building;
@@ -32,7 +33,7 @@ public class QueryFreeRegAptRoomsAction implements Action {//Option2Query2
 	public void doAction() {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
-		TextualOption oApartmentNumberOfRooms = new TextualOption("What number of rooms would you like to query?", new GetIntegerInputAction());
+		TextualOption oApartmentNumberOfRooms = new TextualOption(TextualMenuContent.QUERY_NUMBER_OF_ROOMS, new GetIntegerInputAction());
 		oApartmentNumberOfRooms.displayOption();
 		oApartmentNumberOfRooms.getAction().doAction();
 		int numOfRooms = inputHandler.getCapturedInt();

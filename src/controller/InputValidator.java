@@ -223,6 +223,6 @@ public class InputValidator {
 				hasPrivateEntrance = inputHandler.getCapturedString();
 			}
 		} while (!validInput);
-		return hasPrivateEntrance;//I can return bool, but it's not a part of the design
+		return hasPrivateEntrance;//Can return bool, but it's not a part of the design
 	}
 }

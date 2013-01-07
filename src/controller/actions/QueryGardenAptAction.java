@@ -1,8 +1,9 @@
+/**
+ * Represents a query about all garden apartments
+ */
 package controller.actions;
 
 import controller.Controller;
-import controller.InputHandler;
-import controller.InputValidator;
 import model.db.Database;
 import model.street.Apartment;
 import model.street.Building;
@@ -13,9 +14,6 @@ import view.menu.Action;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Represents an action for creating a Square
- */
 
 public class QueryGardenAptAction implements Action {//Option2Query7
 
@@ -31,10 +29,6 @@ public class QueryGardenAptAction implements Action {//Option2Query7
 	 */
 	@Override
 	public void doAction() {
-		InputHandler inputHandler = InputHandler.getInstance();
-		InputValidator inputValidator = InputValidator.getInstance();
-
-		ArrayList<Building> buildingsAtAddress = new ArrayList<Building>();
 		ArrayList<Apartment> penthouses = new ArrayList<Apartment>();
 		Database database = Controller.getInstance().getDatabaseInstance();
 		for (Building building : database.getBuildings().values()) {

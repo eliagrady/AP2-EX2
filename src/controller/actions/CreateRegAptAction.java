@@ -7,6 +7,7 @@ package controller.actions;
 import controller.Controller;
 import controller.InputHandler;
 import controller.InputValidator;
+import controller.TextualMenuContent;
 import model.db.errors.ObjectCreationException;
 import model.street.RegularApartment;
 import view.menu.Action;
@@ -28,25 +29,25 @@ public class CreateRegAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		TextualOption oApartmentFloor = new TextualOption("Set apartment's floor: ", new GetIntegerInputAction());
+		TextualOption oApartmentFloor = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_FLOOR, new GetIntegerInputAction());
 		oApartmentFloor.displayOption();
 		oApartmentFloor.getAction().doAction();
 		int floor = inputHandler.getCapturedInt();
 		floor = inputValidator.validateFloor(floor);
 
-		TextualOption oApartmentNumberOfRooms = new TextualOption("Set apartment's number of rooms: ", new GetIntegerInputAction());
+		TextualOption oApartmentNumberOfRooms = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_NUM_OF_ROOMS, new GetIntegerInputAction());
 		oApartmentNumberOfRooms.displayOption();
 		oApartmentNumberOfRooms.getAction().doAction();
 		int numOfRooms = inputHandler.getCapturedInt();
 		numOfRooms = inputValidator.validateNumOfRooms(numOfRooms);
 
-		TextualOption oApartmentArea = new TextualOption("Set apartment's area: ", new GetFloatInputAction());
+		TextualOption oApartmentArea = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_AREA, new GetFloatInputAction());
 		oApartmentArea.displayOption();
 		oApartmentArea.getAction().doAction();
 		float area = inputHandler.getCapturedFloat();
 		area = inputValidator.validateArea(area);
 
-		TextualOption oApartmentWarehouseArea = new TextualOption("Set apartment's warehouse area: ", new GetFloatInputAction());
+		TextualOption oApartmentWarehouseArea = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_WAREHOUSE_AREA, new GetFloatInputAction());
 		oApartmentWarehouseArea.displayOption();
 		oApartmentWarehouseArea.getAction().doAction();
 		float warehouseArea = inputHandler.getCapturedFloat();

@@ -1,5 +1,5 @@
 /**
- * Represents a perfect triangle creation action.
+ * Represents a query action for regular apartments by address.
  */
 package controller.actions;
 

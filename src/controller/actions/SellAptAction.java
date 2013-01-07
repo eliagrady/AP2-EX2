@@ -1,5 +1,5 @@
 /**
- * Represents a simulation and statistics on a current Ground configuration.
+ * Represents a sell action for any free apartment
  */
 package controller.actions;
 
@@ -39,7 +39,7 @@ public class SellAptAction implements Action {//Option3
 		}
 		TextualMenu mApartments = new TextualMenu(TextualMenuContent.CREATE_APARTMENTS_TITLE, oFreeApartments);
 		TextualOption oConfirmation = new TextualOption(TextualMenuContent.SELL_CONFIRMATION, new GetStringInputAction());
-		TextualOption oResident = new TextualOption("Please enter a new resident name for this apartment:", new GetStringInputAction());
+		TextualOption oResident = new TextualOption(TextualMenuContent.REQUEST_RESIDENT_NAME, new GetStringInputAction());
 
 		String message;
 		boolean validInput;
@@ -56,7 +56,7 @@ public class SellAptAction implements Action {//Option3
 					oResident.displayOption();
 					oResident.getAction().doAction();
 					String residentName = inputHandler.getCapturedString();
-					residentName = inputValidator.validateStreetName(residentName);
+					residentName = inputValidator.validateResidentName(residentName);
 					if (database.sellApartment(selected.getApartment(), residentName)) {
 						TextualConsole.getInstance().println(TextualMenuContent.SELL_SUCCESS);
 						oFreeApartments.remove(selected);

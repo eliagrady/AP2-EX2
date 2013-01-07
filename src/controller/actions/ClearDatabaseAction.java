@@ -1,3 +1,6 @@
+/**
+ * Represents an action to clear the current database being saved. (overrun it)
+ */
 package controller.actions;
 
 import controller.Controller;
@@ -7,16 +10,9 @@ import view.menu.Action;
 
 import java.util.HashMap;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Elia
- * Date: 12/29/12
- * Time: 4:24 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ClearDatabaseAction implements Action {
 	/**
-	 * Do a general Action
+	 * Clears the current database
 	 */
 	@Override
 	public void doAction() {

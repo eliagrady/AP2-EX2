@@ -1,12 +1,10 @@
 /**
- * Represents creating a Circle shape action.
+ * Represents a query action about all regular apartments
  */
 
 package controller.actions;
 
 import controller.Controller;
-import controller.InputHandler;
-import controller.InputValidator;
 import model.db.Database;
 import model.street.Apartment;
 import model.street.Building;
@@ -30,10 +28,11 @@ public class QueryRegAptAction implements Action {//Option2Query5
 	 */
 	@Override
 	public void doAction() {
+		/*//TODO remove if unnecessary
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
-
 		ArrayList<Building> buildingsAtAddress = new ArrayList<Building>();
+		*/
 		ArrayList<Apartment> regularApartments = new ArrayList<Apartment>();
 		Database database = Controller.getInstance().getDatabaseInstance();
 		for (Building building : database.getBuildings().values()) {
