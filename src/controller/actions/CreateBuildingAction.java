@@ -1,5 +1,5 @@
 /**
- * Represents an action for creating a menu.
+ * Represents an action for creating a building.
  */
 package controller.actions;
 
@@ -24,7 +24,7 @@ public class CreateBuildingAction implements Action {
 	}
 
 	/**
-	 * This action creates a new 'Ground' and updates the 'Ground' instance with the newly generated one
+	 * This action creates a new Building and updates the 'database' instance with the newly generated one
 	 */
 	@Override
 	public void doAction() {
@@ -43,7 +43,7 @@ public class CreateBuildingAction implements Action {
 		oStreetNumber.getAction().doAction();
 		int streetNumber = inputHandler.getCapturedInt();
 		streetNumber = inputValidator.validateStreetNumber(streetNumber);
-		try { //TODO if exist address, add apartments
+		try { //if address exist, add apartments
 			building = (Building) objectsFactory.createObject("Building");
 			building.setStreetName(streetName);
 			building.setStreetNumber(streetNumber);

@@ -82,7 +82,6 @@ public class Controller {
 		objectsFactory.addPrototypeObject("Penthouse", new Penthouse());
 		objectsFactory.addPrototypeObject("Garden", new GardenApartment());
 		objectsFactory.addPrototypeObject("Building", new Building());
-		//objectsFactory.addPrototypeObject("Option", new TextualOption());//TODO decide if it's needed
 		return objectsFactory;
 	}
 

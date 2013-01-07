@@ -46,6 +46,12 @@ public class CreateGardenAptAction implements Action {
 		float gardenArea = inputHandler.getCapturedFloat();
 		gardenArea = inputValidator.validateAuxArea(gardenArea);
 
+		TextualOption oApartmentSeparateEntrance = new TextualOption("Does it have a separate entrance? ", new GetStringInputAction());
+		oApartmentSeparateEntrance.displayOption();
+		oApartmentSeparateEntrance.getAction().doAction();
+		String hasPrivateEntrance = inputHandler.getCapturedString();
+		hasPrivateEntrance = inputValidator.validatePrivateEntrance(hasPrivateEntrance);
+
 		GardenApartment apartment;
 		try {
 			apartment = (GardenApartment) controller.getFactory().createObject("Garden");
@@ -55,6 +61,11 @@ public class CreateGardenAptAction implements Action {
 			apartment.setNumOfRooms(numOfRooms);
 			apartment.setResidentName("");//It's an empty apartment, ready to be sold
 			apartment.setGardenArea(gardenArea);
+			if (hasPrivateEntrance.equalsIgnoreCase("y")) {
+				apartment.setSeparateEntrance(true);
+			} else {
+				apartment.setSeparateEntrance(false);
+			}
 			controller.getDatabaseInstance().addApartment(apartment);
 		} catch (ObjectCreationException e) {
 			System.out.println(e.getMessage());

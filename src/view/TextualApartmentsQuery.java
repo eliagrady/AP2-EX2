@@ -1,3 +1,6 @@
+/**
+ * Represents a Textual query object, that prints incoming query result
+ */
 package view;
 
 import controller.TextualMenuContent;
@@ -5,13 +8,6 @@ import model.street.Apartment;
 
 import java.util.ArrayList;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Elia
- * Date: 1/3/13
- * Time: 12:32 AM
- * To change this template use File | Settings | File Templates.
- */
 public final class TextualApartmentsQuery {
 	private static final TextualApartmentsQuery instance = new TextualApartmentsQuery();
 

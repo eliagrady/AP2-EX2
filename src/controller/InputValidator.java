@@ -69,30 +69,19 @@ public class InputValidator {
 	}
 
 	/**
-	 * Validates that a given input is between a given integer range
+	 * Return the current building address being created
 	 *
-	 * @param upperBound the upper bound (MAX VALUE)
-	 * @param lowerBound the lower bound (MIN VALUE)
-	 * @param input      the input to validate
-	 * @return true iff the input is between these bounds
+	 * @return the address of the current building
 	 */
-	/*//TODO remove unused
-	private boolean isIntInValidRange(int upperBound, int lowerBound, int input) {
-		return lowerBound <= input && input <= upperBound;
-	}
-	*/
-
-	/**
-	 * Validates a given capacity input for a robot
-	 *
-	 * @param capacity capacity to validate
-	 * @return a valid capacity
-	 */
-
 	public String getCurrentBuildingAddress() {
 		return currentBuildingAddress;
 	}
 
+	/**
+	 * Sets the current building's address that is being created
+	 *
+	 * @param currentBuildingAddress the address of the current building being created
+	 */
 	public void setCurrentBuildingAddress(String currentBuildingAddress) {
 		InputValidator.currentBuildingAddress = currentBuildingAddress;
 	}
@@ -218,4 +207,22 @@ public class InputValidator {
 		return residentName;
 	}
 
+	public String validatePrivateEntrance(String hasPrivateEntrance) {
+		boolean validInput = false;
+		do {
+			try {
+				if (hasPrivateEntrance != null) {
+					if (hasPrivateEntrance.equalsIgnoreCase("y") || hasPrivateEntrance.equalsIgnoreCase("n")) {
+						validInput = true;
+					}
+				} else throw new InvalidInputException();
+			} catch (InvalidInputException e) {
+				InputHandler inputHandler = InputHandler.getInstance();
+				System.out.println("Invalid input. Please enter Y or N .");
+				inputHandler.captureString();
+				hasPrivateEntrance = inputHandler.getCapturedString();
+			}
+		} while (!validInput);
+		return hasPrivateEntrance;//I can return bool, but it's not a part of the design
+	}
 }
