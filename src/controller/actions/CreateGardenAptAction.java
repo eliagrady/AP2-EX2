@@ -23,11 +23,6 @@ public class CreateGardenAptAction implements Action {
 		InputHandler inputHandler = InputHandler.getInstance();
 		InputValidator inputValidator = InputValidator.getInstance();
 		String currentAddress = InputValidator.getInstance().getCurrentBuildingAddress();
-		TextualOption oApartmentFloor = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_FLOOR, new GetIntegerInputAction());
-		oApartmentFloor.displayOption();
-		oApartmentFloor.getAction().doAction();
-		int floor = inputHandler.getCapturedInt();
-		floor = inputValidator.validateFloor(floor);
 
 		TextualOption oApartmentNumberOfRooms = new TextualOption(TextualMenuContent.CREATE_APT_REQUEST_NUM_OF_ROOMS, new GetIntegerInputAction());
 		oApartmentNumberOfRooms.displayOption();
@@ -58,7 +53,7 @@ public class CreateGardenAptAction implements Action {
 			apartment = (GardenApartment) controller.getFactory().createObject("Garden");
 			apartment.setAddress(currentAddress);
 			apartment.setArea(area);
-			apartment.setFloor(floor);
+			apartment.setFloor(1); //Garden apartments always on the first floor
 			apartment.setNumOfRooms(numOfRooms);
 			apartment.setResidentName("");//It's an empty apartment, ready to be sold
 			apartment.setGardenArea(gardenArea);

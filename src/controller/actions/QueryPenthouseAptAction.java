@@ -29,11 +29,6 @@ public class QueryPenthouseAptAction implements Action {//Option2Query6
 	 */
 	@Override
 	public void doAction() {
-		/* //TODO remove if unnecessary
-		InputHandler inputHandler = InputHandler.getInstance();
-		InputValidator inputValidator = InputValidator.getInstance();
-		ArrayList<Building> buildingsAtAddress = new ArrayList<Building>();
-		*/
 		ArrayList<Apartment> penthouses = new ArrayList<Apartment>();
 		Database database = Controller.getInstance().getDatabaseInstance();
 		for (Building building : database.getBuildings().values()) {

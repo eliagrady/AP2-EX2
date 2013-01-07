@@ -214,7 +214,7 @@ public class InputValidator {
 				if (hasPrivateEntrance != null) {
 					if (hasPrivateEntrance.equalsIgnoreCase("y") || hasPrivateEntrance.equalsIgnoreCase("n")) {
 						validInput = true;
-					}
+					} else throw new InvalidInputException();
 				} else throw new InvalidInputException();
 			} catch (InvalidInputException e) {
 				InputHandler inputHandler = InputHandler.getInstance();

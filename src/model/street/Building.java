@@ -72,7 +72,7 @@ public class Building extends AbstractPrototype implements Serializable {
 	/**
 	 * Sets a new street number for this building //ex: building no. 44 is now 44a
 	 *
-	 * @param streetNumber
+	 * @param streetNumber the street number to update
 	 */
 	public void setStreetNumber(int streetNumber) {
 		this.streetNumber = streetNumber;
@@ -152,7 +152,7 @@ public class Building extends AbstractPrototype implements Serializable {
 	public int numOfEmptyApartments() {
 		int total = 0;
 		for (Apartment apt : apartments) {
-			if (apt.getResidentName().equals(null) || apt.getResidentName().contentEquals("")) {//null or empty resident name
+			if (apt.getResidentName() == null || apt.getResidentName().contentEquals("")) {//null or empty resident name
 				total++;
 			}
 		}
@@ -162,9 +162,17 @@ public class Building extends AbstractPrototype implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		str.append(this.streetNumber + " " + this.streetName + " st. has the following apartments:\n");
+		str.append(this.streetNumber);
+		str.append(" ");
+		str.append(this.streetName);
+		str.append(" st. has the following apartments:\n");
 		for (Apartment apt : apartments) {
-			str.append(apt.toString() + " on floor: " + apt.getFloor() + " with total area of " + apt.totalArea());
+			str.append(apt.toString());
+			str.append(" on floor: ");
+			str.append(apt.getFloor());
+			str.append(" with total area of ");
+			str.append(apt.totalArea());
+
 			str.append("\n");
 		}
 		return str.toString();
@@ -185,7 +193,6 @@ public class Building extends AbstractPrototype implements Serializable {
 		Building clone = (Building) super.clone();
 		clone.streetNumber = this.streetNumber;
 		clone.streetName = this.streetName;
-		//clone.apartments = this.apartments; //TODO remove?
 		clone.apartments = new ArrayList<Apartment>();
 		return clone;
 	}

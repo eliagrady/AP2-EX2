@@ -9,8 +9,8 @@ public class TextualMenuContent {
 	public static final String MAIN_MENU_TITLE = "### Welcome to main menu ### ";
 	public static final String CREATE_APARTMENTS_TITLE = "### Welcome to apartments creation menu ### ";
 	public static final String CREATE_REGULAR_APT_OPTION = "Create a new empty regular apartment";
-	public static final String CREATE_GARDEN_APT_OPTION = "Create a new empty penthouse apartment";
-	public static final String CREATE_PENTHOUSE_APT_OPTION = "Create a new empty garden apartment";
+	public static final String CREATE_GARDEN_APT_OPTION = "Create a new empty garden apartment";
+	public static final String CREATE_PENTHOUSE_APT_OPTION = "Create a new empty penthouse apartment";
 
 
 	public static final String APARTMENTS_QUERY_TITLE = "### Welcome to apartments query menu ### ";
