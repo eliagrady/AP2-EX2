@@ -6,7 +6,9 @@ package controller;
 
 import controller.actions.*;
 import model.db.Database;
+import model.db.FileDatabase;
 import model.db.MyPrototypeFactory;
+import model.db.SqlDatabase;
 import model.street.Building;
 import model.street.GardenApartment;
 import model.street.Penthouse;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 public class Controller {
 	private static final Controller instance = new Controller();
 	private Database database;
+	private Database database2;
 	private MyPrototypeFactory objectsFactory;
 	private String menuCodeRequest;
 
@@ -28,7 +31,13 @@ public class Controller {
 	 * Default constructor
 	 */
 	private Controller() {
-		this.database = new Database();
+		if (Settings.DATABASE_TYPE.contentEquals("SQL")) {
+			this.database = new SqlDatabase();
+		} else if (Settings.DATABASE_TYPE.contentEquals("FILE_BASED")) {
+			this.database = new FileDatabase();
+		} else {
+			throw new ExceptionInInitializerError("Invalid Database setting!");
+		}
 	}
 
 	/**

@@ -31,6 +31,7 @@ public class TextualMenuContent {
 
 	public static final String QUERY_NO_RESULTS = "################ No results found #################";
 	public static final String QUERY_FREE_APT_MENU_TITLE = "############### All free Apartments ############### ";
+	public static final String QUERY_APT_MENU_TITLE = "################ Apartments Query ################# ";
 	public static final String LINE_SEPARATOR = "###################################################";
 	public static final String RETURN_TO_MAIN_MENU = "Return to main menu";
 	public static final String CLEAR_DATABASE_OPTION = "Clear the current database";

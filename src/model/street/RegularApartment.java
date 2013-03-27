@@ -54,7 +54,22 @@ public class RegularApartment extends Apartment implements Serializable {
 		return "Regular apartment";
 	}
 
+
+	/**
+	 * Getter for the warehouse Area for this apartment
+	 *
+	 * @return the warehouse area for this apartment
+	 */
+	public float getWarehouseArea() {
+		return warehouseArea;
+	}
+
+	/**
+	 * Set a new warehouse area for this apartment
+	 *
+	 * @param warehouseArea the new warehouse area to set
+	 */
 	public void setWarehouseArea(float warehouseArea) {
-		this.warehouseArea = warehouseArea;
+		this.warehouseArea = this.warehouseArea;
 	}
 }

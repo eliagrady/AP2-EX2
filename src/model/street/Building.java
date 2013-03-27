@@ -213,4 +213,15 @@ public class Building extends AbstractPrototype implements Serializable {
 		}
 		return false;
 	}
+
+	public void setAddress(String address) {
+		String[] addressParts = address.split(" ");
+		int streetNumber = Integer.valueOf(addressParts[addressParts.length - 1].trim());
+		setStreetNumber(streetNumber);
+		String streetName = "";
+		for (String addressPart : addressParts) {
+			streetName += addressPart;
+		}
+		setStreetName(streetName);
+	}
 }

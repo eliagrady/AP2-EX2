@@ -92,7 +92,7 @@ public abstract class Apartment extends AbstractPrototype implements Comparable<
 	 *
 	 * @return The number of rooms in the apartment
 	 */
-	public double getNumOfRooms() {
+	public int getNumOfRooms() {
 		return numOfRooms;
 	}
 

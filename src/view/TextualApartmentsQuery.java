@@ -25,7 +25,7 @@ public final class TextualApartmentsQuery {
 		if (results.size() == 0) {
 			System.out.println(TextualMenuContent.QUERY_NO_RESULTS);
 		} else {
-			System.out.println(TextualMenuContent.QUERY_FREE_APT_MENU_TITLE);
+			System.out.println(TextualMenuContent.QUERY_APT_MENU_TITLE);
 		}
 		for (Apartment apartment : results) {
 			System.out.println(TextualMenuContent.LINE_SEPARATOR + "\n");

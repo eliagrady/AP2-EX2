@@ -3,6 +3,7 @@
  */
 package controller.errors;
 
+@SuppressWarnings("serial")
 public class InvalidApartmentAuxAreaInputException extends InvalidApartmentAreaInputException {
 	public InvalidApartmentAuxAreaInputException() {
 
