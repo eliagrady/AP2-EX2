@@ -10,10 +10,7 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import model.street.*;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -89,7 +86,8 @@ public class SqlDatabase implements Database, Serializable {
 	public void restoreState() {
 		Connection connection = null;
 		try {
-			ds.setServerName(MySqlSettings.databaseURL);
+			assertDatabase();
+			ds.setServerName(MySqlSettings.databaseHost);
 			ds.setDatabaseName(MySqlSettings.databaseName);
 			connection = ds.getConnection(MySqlSettings.adminUsername, MySqlSettings.adminPassword);
 			Statement buildingStatement = connection.createStatement();
@@ -178,14 +176,60 @@ public class SqlDatabase implements Database, Serializable {
 		}
 	}
 
+	private void assertDatabase() {
+		try {
+			Class.forName(MySqlSettings.DRIVER).newInstance();
+			Connection connectionTest = DriverManager.getConnection
+				                                          ("jdbc:mysql://" + MySqlSettings.databaseHost + "/" +
+					                                           "?user=" + MySqlSettings.adminUsername + "" +
+					                                           "&password=" + MySqlSettings.adminPassword + "");
+			Statement statementTest = connectionTest.createStatement();
+			int Result = statementTest.executeUpdate(MySqlQuery.createDatabaseQuery());
+
+
+			ds.setServerName(MySqlSettings.databaseHost);
+			ds.setDatabaseName(MySqlSettings.databaseName);
+			ds.setUser(MySqlSettings.adminUsername);
+			ds.setPassword(MySqlSettings.adminPassword);
+			Connection connection = null;
+			Statement statement = null;
+			connection = ds.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createDatabaseQuery());
+
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createApartmentTableQuery());
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createBuildingsTableQuery());
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createRegularApartmentTableQuery());
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createPenthouseApartmentTableQuery());
+			statement = connection.createStatement();
+			statement.executeUpdate(MySqlQuery.createGardenApartmentTableQuery());
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Write the database to a MySQL database.
 	 */
 	public void saveState() {
 		Connection connection = null;
 		try {
+			assertDatabase();
 			clearDatabase();
-			ds.setServerName(MySqlSettings.databaseURL);
+			ds.setServerName(MySqlSettings.databaseHost);
 			ds.setDatabaseName(MySqlSettings.databaseName);
 			connection = ds.getConnection(MySqlSettings.adminUsername, MySqlSettings.adminPassword);
 			Statement statement = connection.createStatement();
@@ -226,13 +270,11 @@ public class SqlDatabase implements Database, Serializable {
 						}
 					} catch (MySQLIntegrityConstraintViolationException e) {
 						//Skipped: found duplicate entry!
-						//System.out.println("already present apartment, skipping");
 					}
 
 				}
 			} catch (MySQLIntegrityConstraintViolationException e) {
 				//Skipped: found duplicate entry!
-				//System.out.println("already present building, skipping");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,8 +287,11 @@ public class SqlDatabase implements Database, Serializable {
 		}
 	}
 
+	/**
+	 * Clears the entire database of internal records
+	 */
 	private void clearDatabase() {
-		ds.setServerName(MySqlSettings.databaseURL);
+		ds.setServerName(MySqlSettings.databaseHost);
 		ds.setDatabaseName(MySqlSettings.databaseName);
 		Connection connection = null;
 		try {
